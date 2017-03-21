@@ -1,0 +1,20 @@
+{
+  "name": "bus-time",
+  "version": "0.0.1",
+  "description": "A Node.js wrapper for the bustime API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha -u exports test/*"
+  },
+  "author": "Mark Headd <mheadd@gmail.com> (http://civic.io/)",
+  "license": "See LICENSE file",
+  "pre-commit": [
+    "test"
+  ],
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {}
+}
