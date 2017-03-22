@@ -6,7 +6,7 @@ describe('Bus-Time Client Library', () => {
 
     describe("#Initiatize", () => {
         it("Throw an error if API key not passed in call to initialize", (done) => {
-            bustime.gettime({
+            bustime.getTime({
                     format: 'json',
                     rejectUnauthorized: config.rejectUnauthorized
                 })
@@ -17,10 +17,40 @@ describe('Bus-Time Client Library', () => {
         })
     });
 
-    describe('#GetDetails', () => {
-        it("Gets the details of the BusTime feed.", (done) => {
+    describe('#GetTime', () => {
+        it("Gets the current system date and time", (done) => {
             bustime.init(config.key, config.host);
-            bustime.gettime({
+            bustime.getTime({
+                    format: 'json',
+                    rejectUnauthorized: config.rejectUnauthorized
+                })
+                .then((response) => {
+                    expect(response).to.be.an('object');
+                    expect(response).to.not.be.empty();
+                });
+            done();
+        });
+    });
+
+    describe('#GetDetails', () => {
+        it("Gets the set of external and internal rtpi information serviced by the system", (done) => {
+            bustime.init(config.key, config.host);
+            bustime.getDetails({
+                    format: 'json',
+                    rejectUnauthorized: config.rejectUnauthorized
+                })
+                .then((response) => {
+                    expect(response).to.be.an('object');
+                    expect(response).to.not.be.empty();
+                });
+            done();
+        });
+    });
+
+    describe('#GetLocaleList', () => {
+        it("Gets the list of what languages can be used as the locale parameter", (done) => {
+            bustime.init(config.key, config.host);
+            bustime.getLocaleList({
                     format: 'json',
                     rejectUnauthorized: config.rejectUnauthorized
                 })
@@ -33,15 +63,3 @@ describe('Bus-Time Client Library', () => {
     });
 
 });
-
-
-
-// bustime.init(config.key, config.host);
-// bustime.details({format: 'json', rejectUnauthorized: false})
-// 	.then((response) => {
-// 		console.log(JSON.stringify(response));
-// 	})
-// 	.catch((error) => {
-// 		console.log(JSON.stringify(error));
-// 	}
-// );
