@@ -62,4 +62,21 @@ describe('Bus-Time Client Library', () => {
         });
     });
 
+    describe('#GetRoutes', () => {
+        it("Gets the list of routes serviced by the system", (done) => {
+            bustime.init(config.key, config.host);
+            bustime.getRoutes({
+                    format: 'json',
+                    rejectUnauthorized: config.rejectUnauthorized
+                })
+                .then((response) => {
+                    expect(response).to.be.an('object');
+                    expect(response).to.not.be.empty();
+                    expect(response['bustime-response'].routes).to.be.an('array');
+                    expect(response['bustime-response'].routes).to.not.be.empty();
+                });
+            done();
+        });
+    });
+
 });
